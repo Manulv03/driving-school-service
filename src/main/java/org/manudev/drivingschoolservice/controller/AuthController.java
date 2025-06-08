@@ -23,16 +23,17 @@ public class AuthController {
         this.authService = authService;
     }
 
-    @PostMapping(name = "/login")
+    @PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<RegisterResponse> login(@RequestBody LoginRequest request) {
         return ResponseEntity.ok(authService.login(request));
     }
 
-    @PostMapping(name = "/register")
+    @PostMapping(value = "/register", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<AuthResponse> register(@RequestBody RegisterRequest request) {
-        if (authService.register(request) != null) {
-            return ResponseEntity.ok(authService.register(request));
+        AuthResponse response = authService.register(request);
+        if (response != null) {
+            return ResponseEntity.ok().body(response);
         }
-        return ResponseEntity.internalServerError().build();
+        return ResponseEntity.badRequest().build();
     }
 }

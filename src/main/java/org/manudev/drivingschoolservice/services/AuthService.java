@@ -83,7 +83,7 @@ public class AuthService {
 
         User user = (User) authentication.getPrincipal();
         String token = jwtService.generateToken(user);
-        return new RegisterResponse(token, user.getUser(), user.getUser(), user.getRoles().stream()
+        return new RegisterResponse(token, user.getUser(), user.getUsername(), user.getRoles().stream()
                 .map(Role::getName)
                 .collect(Collectors.toSet()));
     }
