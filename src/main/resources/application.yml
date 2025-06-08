@@ -1,6 +1,6 @@
 server:
   port: 8080
-
+  address: 0.0.0.0
 spring:
   datasource:
     url: jdbc:postgresql://database-1-instance-1.c0tqu2cy6o3j.us-east-1.rds.amazonaws.com:5432/drivingschool
